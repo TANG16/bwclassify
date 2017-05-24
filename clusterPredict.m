@@ -1,4 +1,4 @@
-function [accuracy,  accByLabel, windowAccuracy ] = clusterPredict(labelledData, classifier, clusters)
+function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(labelledData, classifier, clusters)
 % clusterPredict(data,classifier,clusters)
 %  labelledData = labelled data (label in col 1) 
 %  classifier = column array giving labels of each cluster
@@ -6,6 +6,10 @@ function [accuracy,  accByLabel, windowAccuracy ] = clusterPredict(labelledData,
 %  accuracy = probability that the classification = label
 %  accByLabels =  rows = prediction, cols = label, 
 %             value = number of samples with that label and prediction
+%  accuracy2 is the minimum accuracy for samples of a fixed label
+%      that is, the accuracy when look at only samples with a selected
+%      label will be at least accuracy2, if this is high then the
+%      prediction are relatively good for all activities!
 
 
   % first we separate the labels and the data
@@ -48,5 +52,19 @@ function [accuracy,  accByLabel, windowAccuracy ] = clusterPredict(labelledData,
     for i=[1:r]
         accByLabel(i,:) = hist(labels(predictions==i),[1:r]);
     end
+  %accByLabel
+  % next we look at each label and find the percent of the samples
+  % with the label which were correctly predicted
+  % we set the accuracy to be the minimum of those values
+  % so we know that it will be at least that correct on all labels
+  acc=[];
+  sumAcc= sum(accByLabel);
+  for i=1:r
+      acc(i)=accByLabel(i,i)/sumAcc(i);
+  end
+  accuracy2 = min(acc);
+  %accuracy2
+  %accuracy
+  
 end
 

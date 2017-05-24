@@ -18,8 +18,12 @@ function [accuracy, windowAccuracy, bestAccuracy, accByLabel, bestAccByLabel, cl
   bestResult=1;
   results={};
   for(j=[1:N])
-    [classifier,clusters,accuracy0,accByLabel0] = kmeansClassify(labels,vals,k);
+     % here we call kmeans and get several measures of accuracy
+    [classifier,clusters,accuracy1,accByLabel0, windowAccuracy, accuracy2] = kmeansClassify(labels,vals,k);
     %display(accuracyByLabel0);
+    
+    % this is where we decide which measure of accuracy to use
+    accuracy0 = accuracy1;
     results{j}={classifier,clusters,accuracy0,accByLabel0};
     allAccuracies(j)=accuracy0;
     if accuracy0>bestAccuracy

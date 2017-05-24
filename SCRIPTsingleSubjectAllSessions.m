@@ -6,10 +6,17 @@ results={}
 for i = [1:9]
     dataset = createDataset(subjects(i));
     k=36;
-    repetitions=1;
+    repetitions=100;
     [accuracy,alist,blist,wlist] = kmeansCrossoverValidation(dataset,k,repetitions);
     results{i} = [accuracy,mean(alist),mean(blist),mean(wlist),alist,blist,wlist];
     mw=mean(wlist)
 end
 
-results
+
+data=[];
+for i=1:9
+    for j=1:16
+        data(i,j)=results{i}(j);
+    end
+end
+data

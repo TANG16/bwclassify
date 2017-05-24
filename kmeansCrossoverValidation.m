@@ -16,7 +16,7 @@ for(i=[1:v])
         end
     end
     [accuracy0,windowAccuracy,bestAccuracy,~,~,~,~] = kmeansTrainTest(trainingData,testingData,k,1);
-    display([accuracy0,windowAccuracy,bestAccuracy]);
+    %display([accuracy0,windowAccuracy,bestAccuracy]);
     accuracies = [accuracies, accuracy0];
     bestAccuracies =[bestAccuracies, bestAccuracy];
     windowAccuracies = [windowAccuracies,windowAccuracy];

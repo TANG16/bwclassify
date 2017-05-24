@@ -1,4 +1,4 @@
-function [ classifier, clusters, accuracy, accByLabel ] = kmeansClassify(labels,vals, k )
+function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2 ] = kmeansClassify(labels,vals, k )
 %kmeansClassify(data,k,N) create a k-means classifier for labelled data 
 %   data is a matrix with m+1 cols
 %      the first column is an integer label in the range 1:r 
@@ -34,7 +34,7 @@ function [ classifier, clusters, accuracy, accByLabel ] = kmeansClassify(labels,
         classifier(c)=j;
     end
     
-    [accuracy, accByLabel] = clusterPredict([labels,vals],classifier,clusters);
+    [accuracy, accByLabel, windowAccuracy, accuracy2] = clusterPredict([labels,vals],classifier,clusters);
     
 
 end
