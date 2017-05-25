@@ -11,14 +11,20 @@ function [ P] = clusterWindow(C,w)
 N = length(C);  % number of samples
 K = max(C);  % number of clusters
 P = zeros(N,K);
-P(1,C(1)) = 1;
+
+P(1,max(1,C(1))) = 1;
 for i=2:N
     P(i,:) = P(i-1,:);
-    P(i,C(i)) = P(i,C(i))+1;
-    if (i>w)
+    if C(i)>0
+        P(i,C(i)) = P(i,C(i))+1;
+    end
+    if (i>w) & C(i-w)>0
         P(i,C(i-w)) = P(i,C(i-w))-1;
     end
 end
+
+%figure();
+%plot(P);
 
 end
 

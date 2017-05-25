@@ -31,12 +31,16 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
       % this expression subtracts sample s from each cluster, squares the
       % coordinates, then sums them to get the distances of sample s from
       % each cluster
+      %display([s,size(clusters),size(data)])
       distances = sum(((clusters - data(s,:)).^2)');
     
       % this finds the index of the smallest distance
       [~,j] = min(distances);
       predictions(s) = classifier(j);  
   end
+  
+  %histogram(predictions,0:r+1);
+  %legend('show')
   
   windowPredictionPlots = clusterWindow(predictions,600);
   %display(size(windowPredictionPlots));
@@ -47,6 +51,7 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
   accuracy = sum(labels == predictions)/length(labels);
   windowAccuracy = sum(labels==windowPredictions')/length(labels);
  % display(windowAccuracy);
+
   
   accByLabel = zeros(r,r);  % r is the number of labels
     for i=[1:r]
