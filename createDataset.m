@@ -4,8 +4,8 @@ function [ dataset ] = createDataset( subject )
   subject = strcat(datapath,num2str(subject));
   filenames = {strcat(subject,'_2.txt'),strcat(subject,'_3.txt'),strcat(subject,'_4.txt'),strcat(subject,'_5.txt')};
   numFiles = length(filenames);
-  
-  for i=[1:numFiles]  
+
+  for i=[1:numFiles]
     filename = filenames{i};
    % display(filename);
     all = importdata(filename,' ',0);
@@ -16,7 +16,8 @@ function [ dataset ] = createDataset( subject )
     partLength = ceil(lengthAll/4);
     labels = 1+floor([0:length(all)-1]/partLength);
     %labels = 1+mod(labels,2);
+    %dataset{i} = [labels(1:9000)', all(1:9000,:)];
+    %mathread = mod(labels,2)==1;
     dataset{i} = [labels', all];
   end
 end
-

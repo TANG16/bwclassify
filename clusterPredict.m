@@ -1,10 +1,10 @@
 function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(labelledData, classifier, clusters)
 % clusterPredict(data,classifier,clusters)
-%  labelledData = labelled data (label in col 1) 
+%  labelledData = labelled data (label in col 1)
 %  classifier = column array giving labels of each cluster
 %  clusters = matrix where each row is a cluster point
 %  accuracy = probability that the classification = label
-%  accByLabels =  rows = prediction, cols = label, 
+%  accByLabels =  rows = prediction, cols = label,
 %             value = number of samples with that label and prediction
 %  accuracy2 is the minimum accuracy for samples of a fixed label
 %      that is, the accuracy when look at only samples with a selected
@@ -31,31 +31,32 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
       % this expression subtracts sample s from each cluster, squares the
       % coordinates, then sums them to get the distances of sample s from
       % each cluster
-      %display([s,size(clusters),size(data)])
+      %display([s,size(clusters),size(data)]);
       distances = sum(((clusters - data(s,:)).^2)');
-    
+
       % this finds the index of the smallest distance
       [~,j] = min(distances);
-      predictions(s) = classifier(j);  
+      predictions(s) = classifier(j);
   end
-  
+
+  %figure()
   %histogram(predictions,0:r+1);
   %legend('show')
-  
-  windowPredictionPlots = clusterWindow(predictions,600);
+
+  windowPredictionPlots = clusterWindow2(predictions,600);
   %display(size(windowPredictionPlots));
   [~,windowPredictions] = max(windowPredictionPlots');
   %display(size(windowPredictions));
-  
+
   % Finally we calculate the accuracy and the accByLabels
   accuracy = sum(labels == predictions)/length(labels);
-  windowAccuracy = sum(labels==windowPredictions')/length(labels);
+  windowAccuracy = sum(labels==windowPredictions')/length(labels); %'
  % display(windowAccuracy);
 
-  
+
   accByLabel = zeros(r,r);  % r is the number of labels
     for i=[1:r]
-        accByLabel(i,:) = hist(labels(predictions==i),[1:r]);
+        accByLabel(i,:) = hist(labels(windowPredictions==i),[1:r]); % use predictions ..
     end
   %accByLabel
   % next we look at each label and find the percent of the samples
@@ -70,6 +71,5 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
   accuracy2 = min(acc);
   %accuracy2
   %accuracy
-  
-end
 
+end
