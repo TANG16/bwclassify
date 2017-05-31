@@ -23,7 +23,7 @@ function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2
     % then for each cluster, we see which label appears most frequently
     % in that cluster, and we assign that label to that cluster
     % using the classifier vector
-    classifier = zeros(1,maxLabel);
+    classifier = zeros(1,k);
 
     p=[];
     for (c=[1:k])
