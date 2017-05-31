@@ -1,0 +1,75 @@
+5/31/2017
+
+Lets create the first graph, that shows how accuracy varies for single subject single session
+kmeans classification as k varies with W=600 and N=1, and lets just use the minaccuracy
+so we see what the accuracy is for each of the four activities and take the minimum...
+
+
+5/29/2017
+
+What measures of accuracy
+1) Draw the overview plots ... gives visual representation of accuracy
+2) Calculate the prediction accuracy per activity and get 4 probabilities
+    take min and take mean, median for those probabilities...
+
+
+What to classify?
+1) MSRO do all 4 classifications ...
+2) pairwise -- just try to classify MvS or MvR or SvO or .. MRvSO
+3) others are classify by subject id (try to recognize different subjects)
+4) try to classify by session (probably not for good ...)
+We can do
+MvSvRvO
+MvS
+
+
+Within Subject Classification
+How good is kmeans at representing an activity map, i.e. predicting activity classifications?
+and how does the accuracy vary based on k, W, N
+3 graphs for MvSvRvO
+   e.g. try baseline of k=120 W=600 N=5, then
+       let k vary from say 4,12,48,120,600,1200 and
+       for each k we get 36 accuracies (one for each session)
+       can use a box and whisker plot to show the effect of k on accuracy ...
+       Same for W, say with W=1,10,100,300,600,1200,3000
+       Same for N=1,2,4,8,16...
+3 graphs for MvS
+
+How regular are the brainwaves for a single subject across multiple sessions.
+Use 4-fold crossover validation. Train on 3, predict on 4th, average results...
+using best k,W,N from previous...
+Show all 36 prediction graphs (based on training on the other three...)
+1 plot for each MVSR and MS
+
+Between Subject Classification
+How good is kmeans at representing an activity map for all 9 subjects....
+Use one classifier for all 9 subjects and see how the accuracy varies based on
+3 graphs for MvSvRvO  (k varies, W varies, N varies)
+3 for MvS
+
+How regular are the brainwave for different subjects across all sessions.
+Use 9-fold crossover validation. Train on 8 subjects (all sessions), test on 9th subject, average.
+Show the prediction graphs....
+2 plots ...
+
+
+
+
+
+The next thing I need to do is to describe in detail the kinds of analysis
+we need to do. The key ideas are:
+1) discuss measures of accuracy for a k-means classifier
+2) discuss the parameters used to tune k-means
+    k
+    N
+    W
+    c
+3) show how accuracy varies based on different choices of the k-means parameters
+
+Another issue to discuss is what we choose to classify, e.g.
+
+Math vs Shut
+ We can get 98% mean window accuracy for k=120 W=600 N=3
+
+Math vs Read vs Shut vs Open
+We can get 82% min win accuracy for k=120 W=600 (and 97% mean win accuracy)
