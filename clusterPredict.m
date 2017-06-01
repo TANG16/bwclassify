@@ -11,6 +11,7 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
 %      label will be at least accuracy2, if this is high then the
 %      prediction are relatively good for all activities!
 
+  global W
 
   % first we separate the labels and the data
   labels = labelledData(:,1);
@@ -42,8 +43,8 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
   %figure()
   %histogram(predictions,0:r+1);
   %legend('show')
-
-  windowPredictionPlots = clusterWindow2(predictions,600);
+  
+  windowPredictionPlots = clusterWindow2(predictions,W);
   %display(size(windowPredictionPlots));
   [~,windowPredictions] = max(windowPredictionPlots');
   %display(size(windowPredictions));
