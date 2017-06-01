@@ -33,3 +33,5 @@ for W = values
   
 end
 boxplot(allResults, values);
+hold on;
+plot(allResults');
