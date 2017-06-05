@@ -26,16 +26,17 @@ end
 w2 = round(w/2);
 P=P(w2:N+w2-1,:); %shift the plot and restrict to size N
 
-
+global W;
 %figure();
-%plot(P);
-%grid on;
-%grid minor;
-P(:,K+1)=0;  % remove all 0 data ...
-%legend('show');
-%figure(2)
 plot(P);
 grid on;
 grid minor;
-legend('show');
+axis([0,12000,0,W]);
+P(:,K+1)=0;  % remove all 0 data ...
+%legend('show');
+%figure(2)
+%plot(P);
+%grid on;
+%grid minor;
+%legend('show');
 end

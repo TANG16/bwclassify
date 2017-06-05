@@ -21,11 +21,11 @@ function [minaccuracy, windowAccuracy, bestAccuracy, accByLabel, bestAccByLabel,
   for(j=[1:N])
     %figure(j+2)
      % here we call kmeans and get several measures of accuracy
-    [classifier,clusters,accuracy1,accByLabel0, windowAccuracy, accuracy2] = kmeansClassify(labels,vals,k);
+    [classifier,clusters,accuracy1,accByLabel0, windowAccuracy, accuracy2] = kmeansClassify3(labels,vals,k);
 
 
     % this is where we decide which measure of accuracy to use
-    accuracy0 = accuracy2;
+    accuracy0 = windowAccuracy;
     results{j}={classifier,clusters,accuracy0,accByLabel0};
     allAccuracies(j)=accuracy0;
     if accuracy0>bestAccuracy
@@ -40,6 +40,7 @@ function [minaccuracy, windowAccuracy, bestAccuracy, accByLabel, bestAccByLabel,
   %z = allAccuracies
   %figure(j+3);
   %display(bestClusters);
+  accuracy = windowAccuracy;
   [accuracy, accByLabel, windowAccuracy,minaccuracy] = clusterPredict(testingData,bestClassifier,bestClusters);
     %display(accuracy);
     %display(accByLabel);

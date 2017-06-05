@@ -9,8 +9,8 @@ function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2
 %   accuracy is the proportion of the data which is correctly classified
 %   accByLabel is a rxr matrix M where M(i,j) is the number of samples
 %      in the data with label i that are predicted to be of type j
-
-    % cutoff=0.0; % I'm removing the cutoff option for now...
+    global cutoff;
+    cutoff=0.0; % I'm removing the cutoff option for now...
                   % if we want it back we will make it a parameter
 
     [clusteredData,clusters,~,~] = kmeans(vals,k);
@@ -35,12 +35,12 @@ function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2
         % j is the label that appears most often in cluster c
         % and m is the number of times it appears!
         % so j is the label we assign to cluster c for our classifier
-        classifier(c)=j;
-        %if p(c)>cutoff
-        %    classifier(c)=j;
-        %else
-        %    classifier(c)=0;  % maybe make this -j to preserve info?
-        %end
+        %classifier(c)=j;
+        if p(c)>cutoff
+            classifier(c)=j;
+        else
+            classifier(c)=0;  % maybe make this -j to preserve info?
+        end
     end
     %display(p);
     %display(classifier);
@@ -51,3 +51,4 @@ function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2
 
 
 end
+

@@ -1,3 +1,167 @@
+6/3/2017
+Overview of prediction accuracy for W=600
+labels           k=150         k=600      random    95% CI
+
+M-S-R-O          55.9          57.9       25.0      [24.6,25.4]
+
+M-S-R            57.7          65.0       33.0
+
+R-O              62.5          74.0       50.0
+
+M-R              65.0          65.0       50.0      [49.3,50.7]
+
+M-O              66.5          77.5       50.0
+
+S-O              71.0          77.0       50.0
+
+MR-S             74.5          84.5       50.0
+
+MR-SO            78.0          84.6       50.0
+
+S-R              78.5          85.5       50.0
+
+M-S              89.5          89.0       50.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+Looking at mean window accuracy by activity for k=600 and W=600 we get
+the following with 57.94% accuracy
+
+    0.6560    0.0688    0.3251    0.1212
+    0.0378    0.7063    0.0614    0.1409
+    0.1841    0.0306    0.3997    0.1821
+    0.1221    0.1943    0.2138    0.5557
+
+If we use the kmeans3 version we get an accuracy of 55.13%
+
+    0.5569    0.0358    0.2563    0.0949
+    0.0316    0.6888    0.0489    0.1660
+    0.2257    0.0446    0.4516    0.2311
+    0.1858    0.2308    0.2432    0.5080
+
+The accuracy is a little less, but it is more uniform in
+its predictions. This took 12 minutes to compute for multiple k and W=600
+
+
+
+  If we collapse into Problem Solving (Math+Read) and Relaxation (Shut+Open)
+  we get
+
+    0.8910    0.1990
+    0.1090    0.8010
+
+  which shows that on the average over all 36 session it correctly predicts
+  89% of the Problem Solving activity and
+  80% of the Relaxation.
+  So focusing on PS, there are 11% false negatives and 20% false positives
+  The general accuracy rate is therefor 85% and the error rate is 15%. There is
+  however a very large variance...
+
+  If we look at k=150 instead we get
+
+    0.6090    0.0484    0.3408    0.1621
+    0.0437    0.6639    0.0797    0.1167
+    0.2043    0.0393    0.3587    0.1163
+    0.1430    0.2484    0.2207    0.6050
+  Observe the connection between MR and SO
+  Almost all of the M predictions are in M or R (94%)
+  and the M+R account for 81.3% of the M predictions.
+  The weakest prediction of all is Reading
+    it only gets 36% accuracy and accounts for 20% of the false negatives in M
+    Likewise, M accounts for 34% of the false positives in Reading...
+
+Again, using kmeans3 for k=160 (it needs to be a multiple of 4 to work well)
+we get 56.93% accuracy
+   0.6154    0.0364    0.3007    0.0973
+   0.0239    0.6990    0.0406    0.1495
+   0.1681    0.0570    0.4163    0.2068
+   0.1926    0.2077    0.2424    0.5464
+and it does a slightly better job in reading ...
+
+Looking at all but Open for k=150 we get accuracy of 57.7
+58          16          41
+11          71          14
+30          12          44
+with k=600 we get accuracy = 65.0
+64           8          38
+ 6          84          15
+30           8          47
+
+
+
+  Looking at PS vs RX we get 78% accuracy!
+    0.7564    0.1830
+    0.2436    0.8170
+
+Now lets look at Math vs Reading ..
+at k=150 W=600 we get an average accuracy of 65%
+     66          35
+     34          65
+
+at k=600 W=600 we get again about 65% accuracy
+     61          30
+     39          70
+
+Next looking at Math vs Shut we get an accuracy around 90%
+
+for k=600 we get 89.0%
+        93          15
+         7          85
+For k=150 we get 89.5%
+        93          14
+         7          86
+
+Looking at MR-S we get 74.5% accuracy for k=150
+97          48
+ 3          52
+The MR get almost 100% of the MR activity,
+but it also creates false positives at a rate of almost 50% for S
+
+With k=600 it does better with 85.5% accuracy
+95          24
+ 5          76
+again the MR is almost perfect on MR, but it generates 24% false positives in S
+
+S vs O k=150 gets 71% accuracy
+69          27
+31          73
+for k=600 gets  77% accuracy
+71          17
+29          83
+
+M vs O with k=150 accuracy = 66.5%
+74          37
+26          63
+with k=600 accuracy = 75.5%
+73          22
+27          78
+
+S vs R with k=150, accuracy = 78.5%
+86          29
+14          71
+with k=300, accuracy = 85.5%
+86          15
+14          85
+
+R vs O with k=150, accuracy = 62.5%
+68          43
+32          57
+with k=600, accuracy = 74%
+77          29
+23          71
+
+
+
 5/31/2017
 
 Lets create the first graph, that shows how accuracy varies for single subject single session

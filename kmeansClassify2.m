@@ -23,7 +23,7 @@ function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2
         [cData,cs,~,~] = kmeans(vals(labels==r,:),k4);
         clusteredData=[clusteredData;cData];
         clusters = [clusters;cs];
-        classifier = [classifer;r*ones(length(cs),1)];
+        classifier = [classifier,r*ones(1,length(cs))];
     end
 
 
