@@ -1,3 +1,15 @@
+6/12/2017 
+Lets call the classifier kMSW for k-Means with a Sliding Window
+
+Two main results are -- 
+* effectiveness of kMSW for Single Subject 4-fold crossover prediction
+* effectiveness? of kMSW for Multiple Subject 10-fold crossover prediction
+
+For the latter, our best bet would be to try to classify M vs S and see if
+we can get significantly above 50%
+
+
+
 6/3/2017
 Overview of prediction accuracy for W=600
 labels           k=150         k=600      random    95% CI

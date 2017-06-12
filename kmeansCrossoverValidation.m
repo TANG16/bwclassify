@@ -11,6 +11,8 @@ minacclist = [];
 testAccs = {};
 
 for(i=[1:v])
+    % create training data from 3 of the 4 datasets
+    % let the remaining dataset be the testing set
     trainingData=[];
     for j=[1:v]
         if i==j
@@ -20,7 +22,7 @@ for(i=[1:v])
         end
     end
     %display(i);
-    w = ceil(sqrt(v));
+    %w = ceil(sqrt(v));
     subplot(9,4,4*row+i-4);
     [accuracy0,windowAccuracy,bestAccuracy,testAcc,trainAcc,~,~] = kmeansTrainTest(trainingData,testingData,k,N);
     %display([i,accuracy0,windowAccuracy,bestAccuracy]);

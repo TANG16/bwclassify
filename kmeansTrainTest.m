@@ -4,6 +4,9 @@ function [minaccuracy, windowAccuracy, bestAccuracy, accByLabel, bestAccByLabel,
 
   % first we run the kmean classifier N times and get the best accuracy ...
 
+  % Next, I'll rewrite this as it seems to be the source of the problems,
+  % for some unknown reason!!
+
 
   labels = trainingData(:,1);
   trainingSize = size(trainingData);
@@ -21,7 +24,7 @@ function [minaccuracy, windowAccuracy, bestAccuracy, accByLabel, bestAccByLabel,
   for(j=[1:N])
     %figure(j+2)
      % here we call kmeans and get several measures of accuracy
-    [classifier,clusters,accuracy1,accByLabel0, windowAccuracy, accuracy2] = kmeansClassify3(labels,vals,k);
+    [classifier,clusters,accuracy1,accByLabel0, windowAccuracy, accuracy2] = kmeansClassify(labels,vals,k);
 
 
     % this is where we decide which measure of accuracy to use

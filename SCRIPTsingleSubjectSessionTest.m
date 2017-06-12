@@ -5,6 +5,8 @@ results=[];
 for s=[1:length(subjects)]
     subject = subjects(s)
 dataset = createDataset(subject);
+global W;
+W=600;
 k=120;
 N=3;
 
