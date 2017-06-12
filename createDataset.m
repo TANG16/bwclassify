@@ -4,6 +4,8 @@ function [ dataset ] = createDataset( subject )
   subject = strcat(datapath,num2str(subject));
   filenames = {strcat(subject,'_2.txt'),strcat(subject,'_3.txt'),strcat(subject,'_4.txt'),strcat(subject,'_5.txt')};
   numFiles = length(filenames);
+  
+  dataType='M-S';  % could have 'M-R', 'MR-SO',
 
   for i=[1:numFiles]
     filename = filenames{i};
@@ -15,17 +17,35 @@ function [ dataset ] = createDataset( subject )
     all = all(1:lengthAll,2:21);
     partLength = ceil(lengthAll/4);
     labels = 1+floor([0:length(all)-1]/partLength); %1,2,3,4
+    switch (dataType)
+        case 'M-S-R-O'
+            dataset{i} = [labels',all];
+        case 'M-S'
+            filter = labels<=2; % mathread
+            dataset{i} = [labels(filter)',all(filter,:)];
+        case 'M-R'
+            filter = mod(labels,2)==1; % mathread
+            d=[1,0,2,0]; % Math is label 1, Read is label 2, S and O are filtered out
+            dataset{i} = [d(labels(filter))',all(filter,:)];
+        case 'MR-SO'
+            labels = 1+mod(labels,2);  %2,1,2,1  MR are 2 and SO are 1
+            dataset{i} = [labels(filter)',all(filter,:)];
+        otherwise
+            display('unknown dataType'); display(dataType);
+            dataset{i} = [labels',all];
+    end
+    
     %labels = 1+mod(labels,2);  %2,1,2,1
     %dataset{i} = [labels(1:9000)', all(1:9000,:)];
-    filter = mod(labels,2)==1; % mathread
+    %filter = mod(labels,2)==1; % mathread
     %filter = ((labels(:)==1) | (labels(:)==3));
-    d=[1,0,2,0];
+    %d=[1,0,2,0];
     %filter = labels<4;
     %d=[1,0,2,0];
-    labels = d(labels);
+    %labels = d(labels);
     %mathshut = labels<3;
     %dataset{i} = [labels', all];
-    dataset{i} = [labels(filter)',all(filter,:)];
+    %dataset{i} = [labels(filter)',all(filter,:)];
     %dataset{i}= [labels',all];
   end
 end

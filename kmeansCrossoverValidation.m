@@ -1,7 +1,14 @@
 function [ accuracy, accuracies, bestAccuracies, windowAccuracies, testAccs ] = kmeansCrossoverValidation(dataset,k,N,row )
 %kmeansCrossoverValidation removes a dataset, trains on rest, test on dataset
-%          returns average accuracy
-%  datasets is a cell array containing labelledData datasets{i} being the ith dataset
+%          returns 
+%            accuracy  - average accuracy and
+%            testAccs  - a cell array of all the prediction accuracy
+%                        matrices, M where (
+%                   M(p,a) = number of events of type a predicted to be p
+%  input is
+%       datasets = a cell array containing labelledData 
+%       k = k for kmeans
+%       N = number of time to run the training to get the best accuracy
 
 v = length(dataset);
 accuracies=[];
