@@ -43,6 +43,7 @@ function [minaccuracy, windowAccuracy, bestAccuracy, accByLabel, bestAccByLabel,
   %z = allAccuracies
   %figure(j+3);
   %display(bestClusters);
+  tDs = size(testingData);
   accuracy = windowAccuracy;
   [accuracy, accByLabel, windowAccuracy,minaccuracy] = clusterPredict(testingData,bestClassifier,bestClusters);
     %display(accuracy);

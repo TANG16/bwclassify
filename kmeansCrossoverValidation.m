@@ -28,13 +28,14 @@ for(i=[1:v])
             trainingData = [trainingData;dataset{j}];
         end
     end
-    %display(i);
+    display(i);
     %w = ceil(sqrt(v));
-    subplot(9,4,4*row+i-4);
+    subplot(v,1,i);
     [accuracy0,windowAccuracy,bestAccuracy,testAcc,trainAcc,~,~] = kmeansTrainTest(trainingData,testingData,k,N);
     %display([i,accuracy0,windowAccuracy,bestAccuracy]);
     testAccs{i}= testAcc;
-    testP = testAcc./sum(testAcc);
+    display(testAcc)
+    testP = testAcc./sum(testAcc)
     trainP = trainAcc./sum(trainAcc);
     minaccs=[];
     for (m=[1:length(testP)])

@@ -31,7 +31,7 @@ global W;
 plot(P);
 grid on;
 grid minor;
-axis([0,12000,0,W]);
+axis([0,N,0,W]);
 P(:,K+1)=0;  % remove all 0 data ...
 %legend('show');
 %figure(2)
