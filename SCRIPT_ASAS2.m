@@ -1,11 +1,13 @@
 % 9-fold validation predicting the 9th subject based on other eight
 % for one subject at a time...
-subjects = [55,56,57,58,61,67,71];  %[55,56,57,58,59,61,67,70,71]
-values = [10,20,40,160];% ,48,96,160,300,600,1200];
+subjects = [55,56,57,58,59,61,67,70,71,72];  %[55,56,57,58,59,61,67,70,71]
+%values = [10,20,40,160];% ,48,96,160,300,600,1200];
 %values = [5,10,20,40,80,150,300,600];
-%values = [160,600];
+values = [20];
+NValues = [1,4,16,64];
 S = length(subjects);
 V = length(values);
+NV = length(NValues);
 
 results={};
 data=[];
@@ -24,7 +26,7 @@ for s=[1:S]
 end
 
 
-N=3;
+N=10;
 global W;
 W=600;
 global cutoff;
@@ -33,8 +35,11 @@ cutoff=0.0;
 meanAcc=[];
 predAccs = [];
 
-for count=[1:V]
-  k=values(count);
+%for count=[1:V]
+for count = [1:NV]
+  N = NValues(count)
+  k=20;
+  %k=values(count);
   display('**************************')
   k=k
   figure(count)

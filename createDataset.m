@@ -5,7 +5,7 @@ function [ dataset ] = createDataset( subject )
   filenames = {strcat(subject,'_2.txt'),strcat(subject,'_3.txt'),strcat(subject,'_4.txt'),strcat(subject,'_5.txt')};
   numFiles = length(filenames);
   
-  dataType='M-S';  % could have 'M-R', 'MR-SO',
+  dataType='M-S-R-O';  % could have 'M-R', 'MR-SO',
 
   for i=[1:numFiles]
     filename = filenames{i};
