@@ -44,15 +44,15 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
   %figure()
   %histogram(predictions,0:r+1);
   %legend('show')
-  
+  display(size(predictions));
   windowPredictionPlots = clusterWindow2(predictions,W);
-  %display(size(windowPredictionPlots));
+  display(size(windowPredictionPlots));
   [~,windowPredictions] = max(windowPredictionPlots');
   %display(size(windowPredictions));
 
   % Finally we calculate the accuracy and the accByLabels
   accuracy = sum(labels == predictions)/length(labels);
-  %display([size(labels),size(windowPredictions')]);
+  display([size(labels),size(windowPredictions')]);
   windowAccuracy = sum(labels==windowPredictions')/length(labels); %'
  % display(windowAccuracy);
 

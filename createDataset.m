@@ -21,7 +21,10 @@ function [ dataset ] = createDataset( subject )
         case 'M-S-R-O'
             dataset{i} = [labels',all];
         case 'M-S'
-            filter = labels<=2; % mathread
+            filter = labels<=2; % mathshut
+            dataset{i} = [labels(filter)',all(filter,:)];
+        case 'M'
+            filter = labels<=1; % math
             dataset{i} = [labels(filter)',all(filter,:)];
         case 'M-R'
             filter = mod(labels,2)==1; % mathread
