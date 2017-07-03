@@ -1,4 +1,4 @@
-function [ Clusters ] = overviewSubjectSession(subject,numClusters )
+function [classifier, clusters ] = overviewSubjectSession(subject,session,numClusters )
 %overview Show main clustering data for the specified file
 %   this calls museplot on all 4 electrodes
 %   shows the clusters and their specificity for each of the activities
@@ -7,10 +7,36 @@ function [ Clusters ] = overviewSubjectSession(subject,numClusters )
 
 global windowSize;
 windowSize = 600;
-
+subjects = [55,56,57,58,59,61,67,70,71]
 dataset = createDataset(subject);
+labels = dataset{session}(:,1);
+vals = dataset{session}(:,2:21);
+k=numClusters
+global W
+W=600
 
-musePlot(dataset);
+%data=[];
+%for i=[1:length(dataset)]
+%    data = [data; dataset{i}];
+%end
+
+musePlot(vals);
+
+
+[ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2 ] = kmeansClassify(labels,vals, k )
+title('Classification Accuracy','FontSize',20);
+xlabel('Sample number (10Hz for 20 minutes)','FontSize',20)
+ylabel('Prediction probability','FontSize',20);
+
+
+global kmclass;
+figure()
+bar(kmclass./sum(kmclass)*100)
+legend('Math','Shut','Read','Open')
+title('k-means cluster classification','FontSize',20)
+xlabel('cluster id','FontSize',20)
+ylabel('percent in each cluster','FontSize',20)
+
 
 %{
 a=1;
@@ -58,9 +84,10 @@ all = [math;shut;read]; %open];
 
 % classify 
 
-[~,Clusters,~,~] = kmeans(all,numClusters);
+[~,Clusters,~,~] = kmeans(vals,numClusters);
 
-[Classifications,~]=museClassifyAll(all,1,Clusters);
+[Classifications,~]=museClassifyAll(vals,1,Clusters);
+
 
 % plot
 hold off;

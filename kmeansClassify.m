@@ -25,9 +25,12 @@ function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2
     % using the classifier vector
     classifier = zeros(1,k);
 
+    global kmclass;
+    kmclass=[];
     p=[];
     for (c=[1:k])
         labelCounts = hist(labels(clusteredData==c),1:maxLabel);
+        kmclass = [kmclass;labelCounts];
         %display(labelCounts);
         % labelCounts(j) = number of times label j appears in cluster c
         [m,j] = max(labelCounts);

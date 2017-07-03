@@ -18,7 +18,7 @@ for j=[1:4]
 end
 global W
 W=600
-k=40;
+k=160;
 N=4;
 subjdata = crossdata;
   

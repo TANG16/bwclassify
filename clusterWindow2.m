@@ -34,10 +34,10 @@ display('P=');
 display(size(P));
 global W;
 figure();
-plot(P);
+plot(P/W*100);
 grid on;
 grid minor;
-axis([0,N,0,W]);
+axis([0,N,0,100]);
 %P(:,K+1)=0;  % remove all 0 data ...
 %legend('show');
 %figure(2)

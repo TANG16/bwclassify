@@ -20,7 +20,7 @@ W=600
 
 labels = data(:,1);
 vals = data(:,2:21);
-k=40;
+k=160;
 display(size(data));
 display(size(labels));
 display(size(vals));
