@@ -1,4 +1,4 @@
-function [classifier, clusters ] = overviewSubjectSession(subject,session,numClusters )
+function [classifier, clusters, accByLabel ] = overviewSubjectSession(subject,session,numClusters )
 %overview Show main clustering data for the specified file
 %   this calls museplot on all 4 electrodes
 %   shows the clusters and their specificity for each of the activities
