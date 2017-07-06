@@ -1,4 +1,4 @@
-function [classifier, clusters, accByLabel ] = overviewSubjectSession(subject,session,numClusters )
+function [classifier, clusters, accByLabel ] = overviewSubjectSession(subject,session,theDataType,numClusters )
 %overview Show main clustering data for the specified file
 %   this calls museplot on all 4 electrodes
 %   shows the clusters and their specificity for each of the activities
@@ -8,7 +8,7 @@ function [classifier, clusters, accByLabel ] = overviewSubjectSession(subject,se
 global windowSize;
 windowSize = 600;
 subjects = [55,56,57,58,59,61,67,70,71]
-dataset = createDataset(subject);
+dataset = createDataset(subject,theDataType);
 labels = dataset{session}(:,1);
 vals = dataset{session}(:,2:21);
 k=numClusters

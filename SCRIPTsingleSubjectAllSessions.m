@@ -1,6 +1,6 @@
 % 4-fold validation predicting the fourth session based on other three
 % for one subject at a time...
-subjects = [55,55,55] %56,57,58,59,61,67,70,71]
+subjects = [55] %56,57,58,59,61,67,70,71]
 values = [12];% ,48,96,160,300,600,1200];
 %values = [5,10,20,40,80,150,300,600];
 %values = [160,600];
@@ -10,6 +10,8 @@ V = length(values);
 results={};
 data=[];
 allResults=[];
+
+theDataType = 'M-S-R-O';
 
 
 repetitions=1;
@@ -26,7 +28,7 @@ for count=[1:V]
   figure(count)
 
   for i = [1:S]
-    dataset = createDataset(subjects(i));
+    dataset = createDataset(subjects(i),theDataType);
 
     %figure(i);
     [accuracy,alist,blist,wlist,testAcc] = kmeansCrossoverValidation(dataset,k,repetitions,i);

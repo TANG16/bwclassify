@@ -32,9 +32,9 @@ w2 = round(w/2);
 P=P(w2:N+w2-1,:); %shift the plot and restrict to size N
 display('P=');
 display(size(P));
-global W;
+% global W;
 figure();
-plot(P/W*100);
+plot(P/w*100);
 grid on;
 grid minor;
 axis([0,N,0,100]);

@@ -1,12 +1,14 @@
-function [ dataset ] = createDataset( subject )
+function [ dataset ] = createDataset( subject, theDataType )
 %createDataset reads the files and creates a cell array of labelledData  in the usual way
   datapath = '../Data_1st_Paper/';
   subject = strcat(datapath,num2str(subject));
   filenames = {strcat(subject,'_2.txt'),strcat(subject,'_3.txt'),strcat(subject,'_4.txt'),strcat(subject,'_5.txt')};
   numFiles = length(filenames);
   
-  dataType='M-S-R-O';  % could have 'M-R', 'MR-SO',
-
+  %global theDataType;
+  %theDataType='M-S-R-O';  % could have 'M-R', 'MR-SO',
+  %display(theDataType);
+  
   for i=[1:numFiles]
     filename = filenames{i};
    % display(filename);
@@ -17,7 +19,7 @@ function [ dataset ] = createDataset( subject )
     all = all(1:lengthAll,2:21);
     partLength = ceil(lengthAll/4);
     labels = 1+floor([0:length(all)-1]/partLength); %1,2,3,4
-    switch (dataType)
+    switch (theDataType)
         case 'M-S-R-O'
             dataset{i} = [labels',all];
         case 'M-S'
