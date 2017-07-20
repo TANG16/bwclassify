@@ -8,7 +8,8 @@ function [classifier, clusters, accByLabel ] = overviewSubjectSession(subject,se
 global windowSize;
 windowSize = 600;
 subjects = [55,56,57,58,59,61,67,70,71]
-dataset = createDataset(subject,theDataType);
+%dataset = createDataset(subject,theDataType);
+dataset = createCleanDataset(subject,theDataType);
 labels = dataset{session}(:,1);
 vals = dataset{session}(:,2:21);
 k=numClusters
@@ -19,7 +20,7 @@ W=600
 %for i=[1:length(dataset)]
 %    data = [data; dataset{i}];
 %end
-
+figure()
 musePlot(vals);
 
 
