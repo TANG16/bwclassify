@@ -1,4 +1,4 @@
-subjects = [55,56,57,58,59,61,67,70,71,72];
+subjects = [55,56]; %,57,58,59,61,67,70,71,72];
 for i=[1:length(subjects)]
     figure(i)
     dataset = createCleanDataset(subjects(i),'M-S-R-O');

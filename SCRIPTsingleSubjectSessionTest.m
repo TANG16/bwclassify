@@ -1,14 +1,14 @@
 % this is a script for just running a single kmeansCrossoverValidation test
 % on a single subject
-subjects = [55,56,57,58,59,61,67,70,71]
+subjects = [55,56];%,57,58,59,61,67,70,71,72]
 results=[];
 for s=[1:length(subjects)]
     subject = subjects(s)
-dataset = createDataset(subject);
+dataset = createCleanDataset(subject,'M-R');
 global W;
 W=600;
-k=120;
-N=3;
+k=12;
+N=1;
 
 v = 4;
 training=[];

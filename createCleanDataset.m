@@ -19,13 +19,7 @@ function [ dataset ] = createCleanDataset( subject, theDataType )
     all = all(1:lengthAll,2:21);
     partLength = ceil(lengthAll/4);
     labels = 1+floor([0:length(all)-1]/partLength); %1,2,3,4
-    n = lengthAll-10;
-    a1 = all(1:n+1,:);
-    a2 = all(10:n+10,:);
-    a3 = all(5:n+5,:);
-    a123 = (a1==a2) & (a2==a3);
-    bad = (a123(:,1)|a123(:,2)|a123(:,3)|a123(:,4));
-    good = ~bad;
+
     switch (theDataType)
         case 'M-S-R-O'
             dataset{i} = [labels',all];
@@ -46,7 +40,19 @@ function [ dataset ] = createCleanDataset( subject, theDataType )
             display('unknown dataType'); display(dataType);
             dataset{i} = [labels',all];
     end
-    dataset{i} = dataset{i}(good,:);
+    all = dataset{i}(:,2:21);
+    lengthAll = length(all);
+    n = lengthAll-10;
+    a1 = all(1:n+1,:);
+    a2 = all(10:n+10,:);
+    a3 = all(5:n+5,:);
+    a123 = (a1==a2) & (a2==a3);
+    bad = (a123(:,1)|a123(:,2)|a123(:,3)|a123(:,4));
+    good = ~bad;
+    %display('size of dataset and size of good')
+    %display(size(dataset{i}))
+    %display(size(good));
+    %dataset{i} = dataset{i}(good,:);
     
     %labels = 1+mod(labels,2);  %2,1,2,1
     %dataset{i} = [labels(1:9000)', all(1:9000,:)];
