@@ -44,11 +44,17 @@ function [ dataset ] = createCleanDataset( subject, theDataType )
     lengthAll = length(all);
     n = lengthAll-10;
     a1 = all(1:n+1,:);
-    a2 = all(10:n+10,:);
-    a3 = all(5:n+5,:);
+    a2 = all(2:n+2,:);
+    a3 = all(3:n+3,:);
     a123 = (a1==a2) & (a2==a3);
     bad = (a123(:,1)|a123(:,2)|a123(:,3)|a123(:,4));
     good = ~bad;
+    %display('size of good and labels(good) and all(good) and dataset{i}')
+    %display(size(good))
+    %display(size(labels(good)))
+    %display(size(all(good,:)))
+    dataset{i}=[labels(good)',all(good,:)];
+    %display(size(dataset{i}))
     %display('size of dataset and size of good')
     %display(size(dataset{i}))
     %display(size(good));

@@ -1,13 +1,14 @@
 % this is a script for just running a single kmeansCrossoverValidation test
 % on a single subject
-subjects = [55,56];%,57,58,59,61,67,70,71,72]
+%subjects = [55,56,57,58,59,61,67,70,71,72]
+subjects = [55,56,57,61,67,70,71,72]
 results=[];
 for s=[1:length(subjects)]
     subject = subjects(s)
 dataset = createCleanDataset(subject,'M-R');
 global W;
 W=600;
-k=12;
+k=120;
 N=1;
 
 v = 4;
@@ -30,7 +31,7 @@ for i=[1:v]
     [~,~, accuracy1, accByLabel1, windowAccuracy1, accuracy12 ] = kmeansClassify(labels,vals, k );
     testP = testAcc./sum(testAcc);
     trainP = trainAcc./sum(trainAcc);
-    result = [subject,s,i,accuracy0,accuracy1,bestAccuracy,windowAccuracy,windowAccuracy1];
+    result = [subject,s,i,bestAccuracy,accuracy1,windowAccuracy,windowAccuracy1];
     results = [results;result];
     display([result,0]);
     

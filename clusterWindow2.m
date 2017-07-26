@@ -30,14 +30,14 @@ for i=2:N+w
 end
 w2 = round(w/2);
 P=P(w2:N+w2-1,:); %shift the plot and restrict to size N
-display('P=');
-display(size(P));
+%display('P=');
+%display(size(P));
 % global W;
-figure();
-plot(P/w*100);
-grid on;
-grid minor;
-axis([0,N,0,100]);
+%figure();
+%plot(P/w*100);
+%grid on;
+%grid minor;
+%axis([0,N,0,100]);
 %P(:,K+1)=0;  % remove all 0 data ...
 %legend('show');
 %figure(2)

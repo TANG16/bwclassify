@@ -7,7 +7,7 @@ function [classifier, clusters, accByLabel ] = overviewSubjectSession(subject,se
 
 global windowSize;
 windowSize = 600;
-subjects = [55,56,57,58,59,61,67,70,71]
+subjects = [55,56];% ,57,58,59,61,67,70,71]
 %dataset = createDataset(subject,theDataType);
 dataset = createCleanDataset(subject,theDataType);
 labels = dataset{session}(:,1);

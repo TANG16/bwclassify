@@ -24,12 +24,12 @@ for i=2:N
 end
 
 %figure();
-subplot(2,1,1);
-plot(P);
-P(:,K+1)=0;  % remove all 0 data ...
-legend('show');
-subplot(2,1,2);
-plot(P);
-legend('show');
+%subplot(2,1,1);
+%plot(P);
+%P(:,K+1)=0;  % remove all 0 data ...
+%legend('show');
+%subplot(2,1,2);
+%plot(P);
+%legend('show');
 end
 
