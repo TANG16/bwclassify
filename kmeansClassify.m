@@ -1,4 +1,4 @@
-function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2 ] = kmeansClassify(labels,vals, k )
+function [ classifier, clusters, accuracy, windowAccuracy ] = kmeansClassify(labels,vals, k )
 %kmeansClassify(data,k,N) create a k-means classifier for labelled data
 %   data is a matrix with m+1 cols
 %      the first column is an integer label in the range 1:r
@@ -7,8 +7,9 @@ function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2
 %   classifier is a kxm+1 matrix of the k clusters for the data
 %      the first column is the label for that cluster
 %   accuracy is the proportion of the data which is correctly classified
-%   accByLabel is a rxr matrix M where M(i,j) is the number of samples
-%      in the data with label i that are predicted to be of type j
+%   windowAccuracy is the proportion correctly classified with a sliding
+%   window
+
     global cutoff;
     cutoff=0.0; % I'm removing the cutoff option for now...
                   % if we want it back we will make it a parameter
@@ -50,7 +51,7 @@ function [ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2
     %figure();
     %histogram(p,0:0.01:1);
 
-    [accuracy, accByLabel, windowAccuracy, accuracy2] = clusterPredict([labels,vals],classifier,clusters);
+    [accuracy, windowAccuracy] = clusterPredict([labels,vals],classifier,clusters);
 
 
 end

@@ -1,4 +1,4 @@
-function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(labelledData, classifier, clusters)
+function [accuracy, windowAccuracy ] = clusterPredict(labelledData, classifier, clusters)
 % clusterPredict(data,classifier,clusters)
 %  labelledData = labelled data (label in col 1)
 %  classifier = column array giving labels of each cluster
@@ -32,7 +32,6 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
       % this expression subtracts sample s from each cluster, squares the
       % coordinates, then sums them to get the distances of sample s from
       % each cluster
-      %display([s,size(clusters),size(data)]);
 
       distances = sum(((clusters - data(s,:)).^2)');
 
@@ -41,10 +40,6 @@ function [accuracy,  accByLabel, windowAccuracy, accuracy2 ] = clusterPredict(la
       predictions(s) = classifier(j);
   end
 
-  %figure()
-  %histogram(predictions,0:r+1);
-  %legend('show')
-  %display(size(predictions));
   windowPredictionPlots = clusterWindow2(predictions,W);
   %display(size(windowPredictionPlots));
   [~,windowPredictions] = max(windowPredictionPlots');

@@ -1,5 +1,5 @@
 function [ P] = clusterWindow2(C,w)
-%clusterPlot(C,w) runs a window of size w along the data and
+%clusterWindow2(C,w) runs a window of size w along the data and
 % calculates the percentage of the window containing each of the clusters
 % so if the entire window is all from cluster 3, then cluster 3 will be 1.0
 %
@@ -10,15 +10,15 @@ function [ P] = clusterWindow2(C,w)
 %  C(i-w/2:i+w/2) which have value j for each of the j clusters...
 N = length(C);  % number of samples
 K = max(C);  % number of clusters
-display('nkw=');
-display([N,K,w]);
+%display('nkw=');
+%display([N,K,w]);
 P = zeros(N,K+1);
 C2 = C(:);
 C2(C(:)==0)=K+1;  %make all zero clusters equal to K+1
 P(1,C2(1)) = 1;
-display('p=');
-display(size(P));
-display(size(C2));
+%display('p=');
+%display(size(P));
+%display(size(C2));
 for i=2:N+w
     P(i,:) = P(i-1,:);
     if (i<=N)
@@ -33,11 +33,16 @@ P=P(w2:N+w2-1,:); %shift the plot and restrict to size N
 %display('P=');
 %display(size(P));
 % global W;
-%figure();
-%plot(P/w*100);
-%grid on;
-%grid minor;
-%axis([0,N,0,100]);
+global plotP;
+%plotP = true;
+if plotP 
+  figure();
+  plot(P/w*100);
+  grid on;
+  grid minor;
+  axis([0,N,0,100]);
+  legend('show');
+end
 %P(:,K+1)=0;  % remove all 0 data ...
 %legend('show');
 %figure(2)
