@@ -41,7 +41,8 @@ if plotP
   grid on;
   grid minor;
   axis([0,N,0,100]);
-  legend('show');
+  legend('reading','relaxing');
+  %legend('show');
 end
 %P(:,K+1)=0;  % remove all 0 data ...
 %legend('show');

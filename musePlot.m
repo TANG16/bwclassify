@@ -29,7 +29,7 @@ s=4;t=3;
     plot(t+data(:,s+16),'-g');
 %title('Plot A: Five bands for four electrodes')
 grid on; grid minor;
-%legend('alpha','beta','delta','gamma','theta');
+legend('alpha','beta','delta','gamma','theta');
 xticks([0:3000:12000]);
 %axis([0,12000,0,100])
 hold off;

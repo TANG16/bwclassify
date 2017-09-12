@@ -23,8 +23,8 @@ W=600
 figure()
 musePlot(vals);
 
-
-[ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2 ] = kmeansClassify(labels,vals, k )
+ [classifier,clusters,trainAccNoW,trainAccW] = kmeansClassify(labels,vals, k );
+%[ classifier, clusters, accuracy, accByLabel, windowAccuracy, accuracy2 ] = kmeansClassify(labels,vals, k )
 title('Classification Accuracy','FontSize',20);
 xlabel('Sample number (10Hz for 20 minutes)','FontSize',20)
 ylabel('Prediction probability','FontSize',20);
@@ -33,7 +33,8 @@ ylabel('Prediction probability','FontSize',20);
 global kmclass;
 figure()
 bar(kmclass./sum(kmclass)*100)
-legend('Math','Shut','Read','Open')
+%legend('Math','Shut','Read','Open')
+legend('Reading','Relaxing')
 title('k-means cluster classification','FontSize',20)
 xlabel('cluster id','FontSize',20)
 ylabel('percent in each cluster','FontSize',20)

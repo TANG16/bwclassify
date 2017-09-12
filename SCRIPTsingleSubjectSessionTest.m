@@ -1,17 +1,18 @@
-function runSSSStest(W,k,N,subjects)
+%function runSSSStest(W,k,N,subjects)
 % this is a script for just running a single kmeansCrossoverValidation test
 % on a single subject
 %subjects = [55,56,57,58,59,61,67,70,71,72]
+display('this is working!!!');
 subjects = [55,56,57,61,67,70,71,72]
 results=[];
 for s=[1:length(subjects)]
     subject = subjects(s)
-dataset = createCleanDataset(subject,'M-R');
+dataset = createCleanDataset(subject,'R-O');
 global plotP;
 plotP=false;
 global W;
 W=600;
-k=24;
+k=120;
 N=1;
 
 v = 4;
@@ -43,5 +44,5 @@ for i=[1:v]
 end
 
 end
-end
+%end
 

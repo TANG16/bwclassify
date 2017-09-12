@@ -11,8 +11,8 @@ results={};
 data=[];
 allResults=[];
 
-theDataType = 'M-S-R-O';
-
+%theDataType = 'M-S-R-O';
+theDataType = 'R-O';
 
 repetitions=1;
 global W;
@@ -28,7 +28,7 @@ for count=[1:V]
   figure(count)
 
   for i = [1:S]
-    dataset = createDataset(subjects(i),theDataType);
+    dataset = createCleanDataset(subjects(i),theDataType);
 
     %figure(i);
     [accuracy,alist,blist,wlist,testAcc] = kmeansCrossoverValidation(dataset,k,repetitions,i);
