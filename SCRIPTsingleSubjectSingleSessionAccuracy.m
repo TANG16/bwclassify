@@ -2,7 +2,7 @@
 % for predicting a single subject single session...
 global W;
 W=600;
-subjects = [55,56,57,58,59,61,67,70,71]
+subjects = [55];%[55,56,57,58,59,61,67,70,71]
 results=[];
 allResults=[];
 values = [1,2,5,10,20,40,80,150,300,600,1200,2400];
@@ -12,7 +12,7 @@ k = 150;
 for W = values
   for s=[1:length(subjects)]
     subject = subjects(s)
-    dataset = createDataset(subject);
+    dataset = createCleanDataset(subject,'R-O');
 
     numSessions = length(dataset);
     for session=[1:numSessions]

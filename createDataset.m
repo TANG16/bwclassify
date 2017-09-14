@@ -32,6 +32,10 @@ function [ dataset ] = createDataset( subject, theDataType )
             filter = mod(labels,2)==1; % mathread
             d=[1,0,2,0]; % Math is label 1, Read is label 2, S and O are filtered out
             dataset{i} = [d(labels(filter))',all(filter,:)];
+        case 'R-O'
+            filter = labels==3 | labels==4 ; 
+            d=[0,0,1,2]; % Math is label 1, Read is label 2, S and O are filtered out
+            dataset{i} = [d(labels(filter))',all(filter,:)];
         case 'MR-SO'
             labels = 1+mod(labels,2);  %2,1,2,1  MR are 2 and SO are 1
             dataset{i} = [labels(filter)',all(filter,:)];

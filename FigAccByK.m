@@ -1,11 +1,11 @@
 % Fig accuracy by k
 
 accByK = [];
-ks = [4,12,24,120,200]
+ks = [4,12,24,120,240]
 
 for i = [1:length(ks)]
     k = ks(i);
-    [results,resultsBySubject]=runSSSStest(k,1,'R-O',[55,56,57,61,67,70,71,72]);
+    [results,resultsBySubject]=runSSSStest(k,1,'R-O',[55,56,57,67,70,71,72]);
     accByK = [accByK, resultsBySubject(:,7)]
 end
 

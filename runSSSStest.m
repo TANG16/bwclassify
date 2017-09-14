@@ -19,6 +19,7 @@ v = 4;
 training=[];
 subjectResults = [];
 for i=[1:v]
+    training=[];
     for j = [1:v]
         if i==j
             testing = dataset{j};
@@ -47,7 +48,7 @@ end
 display(mean(subjectResults));
 resultsBySubject = [resultsBySubject;mean(subjectResults)];
 end
-
+figure()
 boxplot(resultsBySubject(:,4:7))
 axis([0 5 0.5 1])
 grid on
